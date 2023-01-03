@@ -1,4 +1,4 @@
-import CardWithFeedback from './components/CardWithFeedback2';
+import CardWithFeedback from './components/CardSurvey';
 import './App.css';
 
 function App() {
