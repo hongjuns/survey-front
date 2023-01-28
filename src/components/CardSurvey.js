@@ -1,4 +1,4 @@
-import React,{ useState } from "react";
+import React,{ useState, useEffect } from "react";
 import { MDBCard,
   MDBCardBody,
   MDBCardFooter,
@@ -9,19 +9,31 @@ import { MDBCard,
 } from "mdb-react-ui-kit";
 import CardSurveyQuestion from './CardSurveyQuestion';
 import { QuestionData } from '../assets/questiondata';
+import { call } from "../api/ApiServer";
 
 export default function CardWithFeedback() {
 
   //Result 데이터 State result
-  const [ resultData , setresultData ] = useState({
+  const [ resultData , setResultData ] = useState({
+    /*
     result01 : 3,
     result02 : 5,
     result03 : 'test msg'
+    */
   });
 
+  const [item, setItem] = useState([]);
+
+  useEffect(()=>{
+    //초기값 세팅
+    call("/survey/selectQuestion?key=123","GET",null).then((response) =>{
+      setItem(response.data);
+    })
+  },[]);
+  
   const handleChange = (e) => {
     const { value , name } = e.target;
-    setresultData((prevState) => {
+    setResultData((prevState) => {
     	return { ...prevState, [name]: value}
     });
   }
@@ -29,6 +41,11 @@ export default function CardWithFeedback() {
   const handleSubmit = (e) => {
     e.preventDefault(); 
     console.log(resultData);
+    let param ={
+      'key' : '123',
+      'answerInfo' : JSON.stringify(resultData)
+    }  
+    call("/survey/inset", "POST",param);
   }
 
   return (
@@ -50,8 +67,9 @@ export default function CardWithFeedback() {
         </MDBCard>
       </MDBCol>
       </MDBRow>
-      {QuestionData.map((question, index) => ( 
-        <CardSurveyQuestion id={index} key={question.id} question={question} resultData={resultData} handleChange={handleChange}/>
+      
+      {item.map((question, index) => ( 
+        <CardSurveyQuestion id={index} key={index} question={question} resultData={resultData} handleChange={handleChange}/>
       ))}
       <MDBRow className="justify-content-center mb-2">
         <MDBCol className="col-sm-12 col-md-6" >

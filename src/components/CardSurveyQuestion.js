@@ -13,6 +13,7 @@ import '../css/Feedback.css';
 export default function CardSurveyQuestion({question, resultData, handleChange, id}) {  
   const frequency = Object.values(resultData)
   if(question.type === "Radio"){
+    let questionArray = question.question.split(",");
     return(
       <MDBRow className="justify-content-center">
         <MDBCol className="col-sm-12 col-md-6 mt-2">
@@ -21,7 +22,7 @@ export default function CardSurveyQuestion({question, resultData, handleChange, 
               <p className="text-left">
                 <strong>{question.title}</strong>
               </p>
-              {question.questionlable.map((questionlable, index) => (
+              {questionArray.map((questionlable, index) => (
                 <MDBRadio
                   name={question.name} 
                   id={question.name} 
@@ -47,15 +48,7 @@ export default function CardSurveyQuestion({question, resultData, handleChange, 
               <p className="text-left">
                 <strong> {question.title}</strong>
               </p>
-              <MDBTextArea 
-                className="mb-4" 
-                label='Message' 
-                id={question.name} 
-                name={question.name} 
-                rows={4}  
-                onChange={handleChange}
-                value={frequency[id]}
-              />
+            
             </MDBCardBody>
           </MDBCard>
         </MDBCol>
