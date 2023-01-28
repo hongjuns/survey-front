@@ -9,7 +9,6 @@ import {
 } from "mdb-react-ui-kit";
 import '../css/Feedback.css';
 
-
 export default function CardSurveyQuestion({question, resultData, handleChange, id}) {  
   const frequency = Object.values(resultData)
   if(question.type === "Radio"){
@@ -24,8 +23,8 @@ export default function CardSurveyQuestion({question, resultData, handleChange, 
               </p>
               {questionArray.map((questionlable, index) => (
                 <MDBRadio
-                  name={question.name} 
-                  id={question.name} 
+                  name={question.id} 
+                  id={question.id} 
                   label={questionlable}
                   onChange={handleChange}
                   className="mb-2"
@@ -48,7 +47,15 @@ export default function CardSurveyQuestion({question, resultData, handleChange, 
               <p className="text-left">
                 <strong> {question.title}</strong>
               </p>
-            
+              <MDBTextArea 
+                className="mb-4" 
+                label='Message' 
+                id={question.name} 
+                name={question.name} 
+                rows={4}  
+                onChange={handleChange}
+                value={frequency[id]}
+              />
             </MDBCardBody>
           </MDBCard>
         </MDBCol>

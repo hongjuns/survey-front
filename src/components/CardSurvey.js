@@ -8,26 +8,18 @@ import { MDBCard,
   MDBBtn
 } from "mdb-react-ui-kit";
 import CardSurveyQuestion from './CardSurveyQuestion';
-import { QuestionData } from '../assets/questiondata';
 import { call } from "../api/ApiServer";
 
 export default function CardWithFeedback() {
 
   //Result 데이터 State result
-  const [ resultData , setResultData ] = useState({
-    /*
-    result01 : 3,
-    result02 : 5,
-    result03 : 'test msg'
-    */
-  });
-
-  const [item, setItem] = useState([]);
+  const [ resultData , setResultData ] = useState({});
+  const [ questionData, setQuestionData] = useState([]);
 
   useEffect(()=>{
     //초기값 세팅
     call("/survey/selectQuestion?key=123","GET",null).then((response) =>{
-      setItem(response.data);
+      setQuestionData(response.data);
     })
   },[]);
   
@@ -67,8 +59,8 @@ export default function CardWithFeedback() {
         </MDBCard>
       </MDBCol>
       </MDBRow>
-      
-      {item.map((question, index) => ( 
+
+      {questionData.map((question, index) => ( 
         <CardSurveyQuestion id={index} key={index} question={question} resultData={resultData} handleChange={handleChange}/>
       ))}
       <MDBRow className="justify-content-center mb-2">
