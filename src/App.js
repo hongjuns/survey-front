@@ -1,10 +1,10 @@
-import CardWithFeedback from './components/CardSurvey';
+import CardSurvey from './components/CardSurvey';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-        <CardWithFeedback/>
+        <CardSurvey/>
     </div>
   );
 }
