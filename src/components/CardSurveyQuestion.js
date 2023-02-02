@@ -9,10 +9,14 @@ import {
 } from "mdb-react-ui-kit";
 import '../css/Feedback.css';
 
-export default function CardSurveyQuestion({question, resultData, handleChange, id}) {  
-  const frequency = Object.values(resultData)
+export default function CardSurveyQuestion({question, resultData, handleChange, id, radioData}) {  
+  
+  const radioValue = Object.values(radioData);
+  
   if(question.type === "Radio"){
     let questionArray = question.question.split(",");
+    let questionArrayValue = question.questionValue.split(",");
+
     return(
       <MDBRow className="justify-content-center">
         <MDBCol className="col-sm-12 col-md-6 mt-2">
@@ -23,14 +27,14 @@ export default function CardSurveyQuestion({question, resultData, handleChange, 
               </p>
               {questionArray.map((questionlable, index) => (
                 <MDBRadio
-                  name={question.id} 
-                  id={question.id} 
+                  name={question.questionId} 
+                  id={question.questionId} 
                   label={questionlable}
                   onChange={handleChange}
                   className="mb-2"
-                  value={index+1} 
+                  value={questionArrayValue[index]} 
                   key={questionlable}
-                  checked={frequency[id] === index+1}
+                  checked={radioValue[id] === questionArrayValue[index]}
                 />
               ))}
             </MDBCardBody>
@@ -50,11 +54,11 @@ export default function CardSurveyQuestion({question, resultData, handleChange, 
               <MDBTextArea 
                 className="mb-4" 
                 label='Message' 
-                id={question.name} 
-                name={question.name} 
+                id={question.questionId} 
+                name={question.questionId} 
                 rows={4}  
                 onChange={handleChange}
-                value={frequency[id]}
+                value={radioValue[id]}
               />
             </MDBCardBody>
           </MDBCard>

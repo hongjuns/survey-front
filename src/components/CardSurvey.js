@@ -15,7 +15,7 @@ export default function CardWithFeedback() {
   //Result 데이터 State result
   const [ resultData , setResultData ] = useState({});
   const [ questionData, setQuestionData] = useState([]);
-
+  const [ radioData, setRadioData] = useState({});
   useEffect(()=>{
     //초기값 세팅
     call("/survey/selectQuestion?key=123","GET",null).then((response) =>{
@@ -28,16 +28,21 @@ export default function CardWithFeedback() {
     setResultData((prevState) => {
     	return { ...prevState, [name]: value}
     });
+    setRadioData((prevState) => {
+    	return { ...prevState, [name]: value}
+    });
   }
 
   const handleSubmit = (e) => {
     e.preventDefault(); 
-    console.log(resultData);
     let param ={
       'key' : '123',
       'answerInfo' : JSON.stringify(resultData)
     }  
-    call("/survey/inset", "POST",param);
+    call("/survey/inset","POST",param).then((response) =>{
+      alert(response.data[0].msg);
+    })
+   
   }
 
   return (
@@ -59,9 +64,8 @@ export default function CardWithFeedback() {
         </MDBCard>
       </MDBCol>
       </MDBRow>
-
       {questionData.map((question, index) => ( 
-        <CardSurveyQuestion id={index} key={index} question={question} resultData={resultData} handleChange={handleChange}/>
+        <CardSurveyQuestion id={index} key={index} question={question} resultData={resultData} handleChange={handleChange} radioData={radioData}/>
       ))}
       <MDBRow className="justify-content-center mb-2">
         <MDBCol className="col-sm-12 col-md-6" >
