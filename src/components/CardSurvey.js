@@ -7,18 +7,20 @@ import { MDBCard,
   MDBRow,
   MDBBtn
 } from "mdb-react-ui-kit";
+import { useParams } from 'react-router-dom';
 import CardSurveyQuestion from './CardSurveyQuestion';
 import { call } from "../api/ApiServer";
 
 export default function CardWithFeedback() {
-
+  const param = useParams();
+  
   //Result 데이터 State result
   const [ resultData , setResultData ] = useState({});
   const [ questionData, setQuestionData] = useState([]);
   const [ radioData, setRadioData] = useState({});
   useEffect(()=>{
     //초기값 세팅
-    call("/survey/selectQuestion?key=123","GET",null).then((response) =>{
+    call("/survey/selectQuestion?key="+param.key,"GET",null).then((response) =>{
       setQuestionData(response.data);
     })
   },[]);
