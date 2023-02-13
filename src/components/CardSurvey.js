@@ -51,7 +51,7 @@ export default function CardWithFeedback() {
     <MDBContainer className="mh-100">
       <form onSubmit={handleSubmit}>
       <MDBRow className="justify-content-center mt-2">
-       <MDBCol className="col-sm-12 col-md-6" >
+       <MDBCol>
         <MDBCard>
             <div className="header"></div>
             <MDBCardBody className="text-start">
@@ -70,7 +70,7 @@ export default function CardWithFeedback() {
         <CardSurveyQuestion id={index} key={index} question={question} resultData={resultData} handleChange={handleChange} radioData={radioData}/>
       ))}
       <MDBRow className="justify-content-center mb-2">
-        <MDBCol className="col-sm-12 col-md-6" >
+        <MDBCol>
           <MDBCardFooter>
             <div className="text-end">
               <MDBBtn>Submit</MDBBtn>

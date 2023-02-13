@@ -8,6 +8,8 @@ import {
   MDBBtn
 } from 'mdb-react-ui-kit';
 
+
+
 export default function SurveyHpme() {
   const navigate = useNavigate();
   const handleNext = (e) => {
@@ -16,7 +18,7 @@ export default function SurveyHpme() {
   }
 
   return (
-    <MDBContainer className="d-flex justify-content-center align-items-center mh-100" style={{ width:"600px" , height: "600px" }} >
+    <MDBContainer className="d-flex justify-content-center align-items-center" >    
     <MDBCard className='flex-grow-1 flex-shrink-1'>
       <MDBCardHeader tag="h3" className='fw-bold'> 2023년 설문조사 </MDBCardHeader>
       <MDBCardBody>
@@ -37,11 +39,13 @@ export default function SurveyHpme() {
             <label className='d-flex align-items-center' style={{ width: "85px" , height:"35px" }}>설문자  </label>
             <input className='flex-grow-1 flex-shrink-1' placeholder='Example label' id='form1' type='text' />
         </div>
-        <div className="d-grid gap-2 col-12 mx-auto mt-3">
-            <MDBBtn onClick={handleNext}>NEXT</MDBBtn>
+        <div className="d-flex justify-content-center">
+            <MDBBtn className='btn btn-primary' onClick={handleNext}>NEXT</MDBBtn>
         </div>
       </MDBCardBody>
     </MDBCard>
   </MDBContainer>
+
+  
   )
 }

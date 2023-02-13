@@ -19,7 +19,7 @@ export default function CardSurveyQuestion({question, resultData, handleChange, 
 
     return(
       <MDBRow className="justify-content-center">
-        <MDBCol className="col-sm-12 col-md-6 mt-2">
+        <MDBCol className="mt-2">
           <MDBCard> 
             <MDBCardBody className="text-start">
               <p className="text-left">
@@ -45,7 +45,7 @@ export default function CardSurveyQuestion({question, resultData, handleChange, 
   }else if (question.type ===  "TextArea"){
     return(
       <MDBRow className="justify-content-center mt-2">
-        <MDBCol className="col-sm-12 col-md-6">
+        <MDBCol>
           <MDBCard>
             <MDBCardBody>
               <p className="text-left">
