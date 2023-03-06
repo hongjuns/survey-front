@@ -10,10 +10,15 @@ import { MDBCard,
 import { useParams } from 'react-router-dom';
 import CardSurveyQuestion from './CardSurveyQuestion';
 import { call } from "../api/ApiServer";
+import { useNavigate  } from "react-router-dom";
 
 export default function CardWithFeedback() {
   const param = useParams();
+  const navigate = useNavigate();
   
+  const userNm = localStorage.getItem('userNm');
+  const regDt = localStorage.getItem('regDt');
+  const endDt = localStorage.getItem('endDt');
   //Result 데이터 State result
   const [ resultData , setResultData ] = useState({});
   const [ questionData, setQuestionData] = useState([]);
@@ -22,6 +27,7 @@ export default function CardWithFeedback() {
     //초기값 세팅
     call("/survey/selectQuestion?key="+param.key,"GET",null).then((response) =>{
       setQuestionData(response.data);
+      localStorage.setItem("key", param.key);
     })
   },[]);
   
@@ -37,12 +43,14 @@ export default function CardWithFeedback() {
 
   const handleSubmit = (e) => {
     e.preventDefault(); 
+
     let param ={
-      'key' : '123',
+      'key' : localStorage.getItem('key'),
       'answerInfo' : JSON.stringify(resultData)
     }  
-    call("/survey/inset","POST",param).then((response) =>{
+    call("/survey/insertAnswer","POST",param).then((response) =>{
       alert(response.data[0].msg);
+      navigate('/success');
     })
    
   }
@@ -57,10 +65,10 @@ export default function CardWithFeedback() {
             <MDBCardBody className="text-start">
             <h3 className="mt-2"><strong>고객만족 설문조사</strong></h3>
             <p className="mb-0"> 
-              ▶ 기간: 2022. 12. 27(화) - 12. 28 (목)
+              ▶ 기간: {regDt} - {endDt}
             </p>
             <p className="mb-0"> 
-              ▶ 대상: React 임직원 
+              ▶ 대상: {userNm}
             </p>
             </MDBCardBody>
         </MDBCard>

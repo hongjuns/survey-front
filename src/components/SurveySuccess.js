@@ -5,6 +5,7 @@ import {
     MDBCard,
     MDBCardBody
 } from 'mdb-react-ui-kit';
+import Typed from 'react-typed';
 
 export default function SurveySuccess() {
   return (
@@ -12,8 +13,12 @@ export default function SurveySuccess() {
     <MDBCard className='flex-grow-1 flex-shrink-1 mt-3 mb-3'>
         <div className='d-flex justify-content-center mt-3 checkBox'> <i className="checkmark">✓</i> </div> 
       <MDBCardBody className='d-flex flex-column justify-content-center align-items-center '>
-         <h1 className='fw-bold'>Success</h1> 
-         <p>We received your purchase request;<br/> we'll be in touch shortly!</p>
+         <Typed
+                    strings={['설문이 완료 되었습니다.']}
+                    typeSpeed={60}
+                    className='fw-bold'
+                    style={{ fontSize: "2rem",color: "#88B04B"}}
+                />
       </MDBCardBody>
     </MDBCard>
   </MDBContainer>

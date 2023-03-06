@@ -1,12 +1,7 @@
 import React ,{ useState , useEffect }from 'react';
 import { Outlet , useLocation } from "react-router-dom";
 import Header from './Header';
-import {
-  MDBContainer,
-  MDBCard,
-  MDBRow,
-  MDBCol
-} from 'mdb-react-ui-kit';
+import { MDBContainer, MDBCard} from 'mdb-react-ui-kit';
 
 export default function Layout() {
   const useLocationParm = useLocation();
