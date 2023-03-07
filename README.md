@@ -2,15 +2,15 @@
 > React Hook을 이용한 Todo List Front
 
 
-<p align="left">
+<p align="center">
 <img width="500" alt="스크린샷" src="https://user-images.githubusercontent.com/39370772/223424323-909198a8-2726-48c1-b7d0-75543a1b5fc5.png">
 </p>
-<p align="left"> Step.1 </p>
-<p align="left">
+<p align="center"> Step.1 </p>
+<p align="center">
 <img width="500" alt="스크린샷" src="https://user-images.githubusercontent.com/39370772/223424465-4d75c6ea-4910-401d-9683-bd49f90fd6de.png">  
 </p>
-<p align="left"> Step.2 </p>
-<p align="left">
+<p align="center"> Step.2 </p>
+<p align="center">
 <img width="500" alt="스크린샷" src="https://user-images.githubusercontent.com/39370772/223424656-927fc6a9-bad0-433f-863f-1c6640efc693.png">  
 </p>
 <p align="center"> Step.3 </p>
